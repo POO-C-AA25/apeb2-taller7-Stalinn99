@@ -10,7 +10,7 @@ public class Problema_4_Trabajador {
         Jefe jefe2 = new Jefe("6518198", "MARIA", "JUAREZ", "CASA1", null, 979.8);
         FijosMensuales trabajador1 = new FijosMensuales("1198419810", "JUAN", "MARITINEZ", "CASA", jefe1, 1500);
         Comisionista trabajador2 = new Comisionista("1198419811", "ANA", "GARCIA", "CASA2", jefe2, 0.10, 20000);
-        Horas trabajador3 = new Horas("1198419812", "LUIS", "PEREZ", "CASA3", jefe1, 0, 15, 45);
+        Hora trabajador3 = new Hora("1198419812", "LUIS", "PEREZ", "CASA3", jefe1, 0, 15, 45);
         Nomina nomina = new Nomina();
         nomina.jefes.add(jefe1);
         nomina.jefes.add(jefe2);
@@ -119,7 +119,7 @@ public class Problema_4_Trabajador {
                             break;
                         }
                     }
-                    Horas trabajadorHoras = new Horas(dniHoras, nombreHoras, apellidosHoras, direccionHoras, jefeHoras,
+                    Hora trabajadorHoras = new Hora(dniHoras, nombreHoras, apellidosHoras, direccionHoras, jefeHoras,
                             0, pagoHora, horasTrabajadas);
                     nomina.agregarHoras(trabajadorHoras);
                     break;
@@ -222,12 +222,12 @@ class Comisionista extends Trabajador {
     }
 }
 
-class Horas extends Trabajador {
+class Hora extends Trabajador {
     public double sueldo;
     public double pagoHora;
     public int horas;
 
-    public Horas(String dni, String nombre, String apellidos, String direccion, Trabajador jefe, double sueldo,
+    public Hora(String dni, String nombre, String apellidos, String direccion, Trabajador jefe, double sueldo,
             double pagoHora, int horas) {
         super(dni, nombre, apellidos, direccion, jefe);
         this.horas = horas;
@@ -246,7 +246,7 @@ class Nomina {
     public ArrayList<Jefe> jefes;
     public ArrayList<FijosMensuales> fijosMensuales;
     public ArrayList<Comisionista> comisionistas;
-    public ArrayList<Horas> horas;
+    public ArrayList<Hora> horas;
 
     public Nomina() {
         this.jefes = new ArrayList<>();
@@ -267,7 +267,7 @@ class Nomina {
         comisionistas.add(comisionista);
     }
 
-    public void agregarHoras(Horas trabajador) {
+    public void agregarHoras(Hora trabajador) {
         horas.add(trabajador);
     }
 
@@ -304,7 +304,7 @@ class Nomina {
         }
         System.out.println("NOMINA DE EMPLEADOS POR HORA");
         System.out.println("=".repeat("NOMINA DE EMPLEADOS POR HORA".length()));
-        for (Horas p : this.horas) {
+        for (Hora p : this.horas) {
             System.out.printf("---- Nómina de: %s %s ----\n", p.nombre, p.apellidos);
             System.out.printf(" > DNI: %s\n", p.dni);
             System.out.printf(" > Dirección: %s\n", p.direccion);
